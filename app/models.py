@@ -10,6 +10,7 @@ def path(instance, filename):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='stud')
+
     # username password fname lname email
     photo = models.FileField(blank=True, null=True, upload_to=path)
     Name = models.CharField(max_length=200, blank=True, null=True)

@@ -199,12 +199,12 @@ position: absolute;
 
 </style>
 {%  if f == 0%}
-<h1>Play the Game</h1>
+<h1>Zagrajmy!</h1>
 
 <form method="post" action="{% url 'app:actualquiz' quiz.id %}">
                 {% csrf_token %}
 
-                <h3>Question 1 - {{quiz.q1}}</h3>
+                <h3>Pytanie 1 - Jaki jest synonim slowa "{{quiz.q1}}"?</h3>
                 {% for choice in options1 %}
 
                     <input type="radio" name="ques1" value="{{choice}}">
@@ -214,7 +214,7 @@ position: absolute;
 
                 <br />
 
-                <h3>Question 2 - {{quiz.q2}}</h3>
+                <h3>Pytanie 2 - {{quiz.q2}}</h3>
                 {% for choice in options2 %}
 
                     <input type="radio" name="ques2" value="{{choice}}">
@@ -224,7 +224,7 @@ position: absolute;
 
                 <br />
 
-                <h3>Question 3 - {{quiz.q3}}</h3>
+                <h3>Pytanie 3 - {{quiz.q3}}</h3>
                 {% for choice in options3 %}
 
                     <input type="radio" name="ques3" value="{{choice}}">
@@ -234,7 +234,7 @@ position: absolute;
 
                 <br />
 
-                <h3>Question 4 - {{quiz.q4}}</h3>
+                <h3>Pytanie 4 - {{quiz.q4}}</h3>
                 {% for choice in options4 %}
 
                     <input type="radio" name="ques4" value="{{choice}}">
@@ -244,57 +244,58 @@ position: absolute;
 
                 <br />
 
-             <button type="submit">Login</button>
+                <button type="submit">Zatwierdz</button>
  </form>
 
  <div class="container">
 
-
-
     <ul class="social">
 
-      <li class="facebook"><a href="{% url 'app:logout' %}">Logout</a></li>
-       <li class="sociali"><a href="{% url 'app:search' %}">Search</a></li>
-      <li class="mail"><a href="app:user_profile' prof.id %}">Profile</a></li>
+      <li class="facebook"><a href="{% url 'app:logout' %}">Wyloguj</a></li>
+      <li class="sociali"><a href="{% url 'app:search' %}">Szukaj</a></li>
+      <li class="mail"><a href="app:user_profile' prof.id %}">Profil</a></li>
 
     </ul>
 
-  </div>
+ </div>
+
 {% endif %}
 
 {%  if f == 1 %}
 
 
-                <h3>Question 1 - {{quiz.q1}}</h3>
-                <h3>Correct Answer - {{quiz.q1.answer}}
-                <h3>Selected Answer - {{quiz.q1selected}}
+                <h3>Pytanie 1</h3>
+                <h3>Synonim slowa - {{quiz.q1 }}</h3>
+                <h3>Poprawna odpowiedz - {{quiz.q1.answer}}
+                <h3>Twoja odpowiedz - {{quiz.q1selected}}
                 <br />
                 <br />
                 <br />
 
 
-                <h3>Question 2 - {{quiz.q2}}</h3>
-                <h3>Correct Answer - {{quiz.q2.answer}}
-                <h3>Selected Answer - {{quiz.q2selected}}
+                <h3>Pytanie 2</h3>
+                <h3>Synonim slowa - {{quiz.q2}}</h3>
+                <h3>Poprawna odpowiedz - {{quiz.q2.answer}}
+                <h3>Twoja odpowiedz - {{quiz.q2selected}}
                 <br />
                 <br />
                 <br />
 
-                <h3>Question 3 - {{quiz.q3}}</h3>
-                <h3>Correct Answer - {{quiz.q3.answer}}
-                <h3>Selected Answer - {{quiz.q3selected}}
+                <h3>Pytanie 3</h3>
+                <h3>Synonim slowa - {{quiz.q3 }}</h3>
+                <h3>Poprawna odpowiedz - {{quiz.q3.answer}}
+                <h3>Twoja odpowiedz - {{quiz.q3selected}}
                 <br />
                 <br />
                 <br />
 
-                <h3>Question 4 - {{quiz.q4}}</h3>
-                <h3>Correct Answer - {{quiz.q4.answer}}
-                <h3>Selected Answer - {{quiz.q4selected}}
+                <h3>Pytanie 4</h3>
+                <h3>Synonim slowa - {{quiz.q4}}</h3>
+                <h3>Poprawna odpowiedz - {{quiz.q4.answer}}
+                <h3>Twoja odpowiedz - {{quiz.q4selected}}
                 <br />
                 <br />
                 <br />
-
-
 
  <div class="container">
 
@@ -302,9 +303,9 @@ position: absolute;
 
     <ul class="social">
 
-      <li class="facebook"><a href="{% url 'app:logout' %}">Logout</a></li>
-       <li class="sociali"><a href="{% url 'app:search' %}">Search</a></li>
-      <li class="mail"><a href="app:user_profile' prof.id %}">Profile</a></li>
+      <li class="facebook"><a href="{% url 'app:logout' %}">Wyloguj</a></li>
+       <li class="sociali"><a href="{% url 'app:search' %}">Szukaj</a></li>
+      <li class="mail"><a href="app:user_profile' prof.id %}">Profil</a></li>
 
     </ul>
 
