@@ -22,11 +22,11 @@
 		<form class="form" method="post" action="{% url 'app:login' %}">
       {% csrf_token %}
 			<input type="text" placeholder="Login" name="username" required>
-			<input type="password" placeholder="Haslo" name="password"required>
+			<input type="password" placeholder="Hasło" name="password"required>
 			<button type="submit">Zaloguj</button>
 		</form>
         <br />
-        <h2>Jezeli jestes tu pierwszy raz</h2>
+        <h2>Jeżeli jesteś tu pierwszy raz</h2>
         <form class="form" action="http://127.0.0.1:8000/register/">
             <button type=" submit" value="Przejdz do rejestracji">Zarejestruj sie</button>
         </form>

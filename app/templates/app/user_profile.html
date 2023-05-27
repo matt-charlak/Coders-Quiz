@@ -202,8 +202,8 @@ position: absolute;
    <h1>{{ req.email }}</h1>
    <h1>{{ client.mobileNo }}</h1>
    <h1>Pytania: {{ client.totalQues }}</h1>
-   <h1>Odpowiedzi: {{ client.totalAns }}</h1>
-   <h1>Quiz</h1>
+   <h1>Odpowiedzi poprawne: {{ client.totalAns }}</h1>
+   <h1>Quizy:</h1>
    {% for q in quiz %}
       <h3><a href="{% url 'app:actualquiz' q.id %}">Quiz {{forloop.counter}}</a><h3>
    {% endfor %}
