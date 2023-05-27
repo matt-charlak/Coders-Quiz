@@ -9,6 +9,8 @@ from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 import random
+from .forms import GameForm
+
 
 
 def register(request):
@@ -199,3 +201,14 @@ def actualquiz(request, id):
         else:
             quiz = Quiz.objects.get(id=id)
             return render(request, 'app/quiz.html', {'quiz': quiz, 'f': 1})
+
+def add_game(request):
+    if request.method == 'POST':
+        form = GameForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app:search')
+
+    else:
+        form = GameForm()
+    return render(request, 'app/add_game.html', {'form': form})

@@ -48,3 +48,4 @@ class Quiz(models.Model):
     q3selected = models.CharField(max_length=200, blank=True, null=True)
     q4 = models.ForeignKey(Game, on_delete=models.CASCADE, related_name="q4")
     q4selected = models.CharField(max_length=200, blank=True, null=True)
+
