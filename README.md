@@ -21,7 +21,7 @@ Strona profilowa:
 ![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/2c9a5f0a-2d9c-4efa-ab9a-865ba6eed828)
 
 Strona profilowa po quzie*:
-![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/9adda081-9227-4b97-9935-9a560d97d8c6)
+![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/91e9fdba-7a7f-4a95-9c2d-373219f1da10)
 
 Strona ze zbiorem słówek:
 ![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/34a038b5-7e63-4336-bab7-573309b3dfa3)
