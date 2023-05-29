@@ -12,26 +12,23 @@ Po co cały czas powtarzać "crazy", jeżeli możemy użyć "insane"!
 Sam projekt na ten moment ma dodaną pewną pulę słów które pozowlą Ci poprawić swoją rozmowę, oczywiście nic nie stoi na przeszkodze aby dodać kolejne!
 
 Strona logowania:
-![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/7b1dc998-371d-4143-9982-423bf94eb40b)
+![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/13cb455f-8771-441a-a840-25cf377522d4)
 
 Strona rejestracyjna:
-![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/b8cb48db-d17d-43d8-815c-0393c05883bc)
+![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/763afd28-a449-4d96-b8ef-fb5bfeb700ab)
 
-Strona profilowa:
-![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/2c9a5f0a-2d9c-4efa-ab9a-865ba6eed828)
-
-Strona profilowa po quzie*:
-![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/91e9fdba-7a7f-4a95-9c2d-373219f1da10)
+Strona profilowa (po quzie*):
+![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/47bca618-6fa0-4dde-a3e5-e94bf3d9b5a5)
 
 Strona ze zbiorem słówek:
-![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/34a038b5-7e63-4336-bab7-573309b3dfa3)
+![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/4a8abad8-7922-405e-ad74-6390d6343cc7)
 
 Strona z dodawaniem słówek:
-![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/553bd5f9-380c-4f01-8bb8-216a55fc55b5)
+![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/2ffdfe7a-12a9-4305-82c9-b5a92b3c4158)
 
 Strona z quizem:
-![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/4f28e62a-3359-482c-a01e-bc5786d5d150)
+![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/eb0773f6-dd5e-4ec1-932c-2170a83aed52)
 
 Strona z odpowiedziami do quizu:
-![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/c18859dc-294e-49ea-8e5b-a1c4819bd46f)
- 
+![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/f898c05c-57e5-4c7c-8152-fe2ce172616a)
+
