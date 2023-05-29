@@ -34,3 +34,4 @@ Strona z quizem:
 
 Strona z odpowiedziami do quizu:
 ![image](https://github.com/matt-charlak/Coders-Quiz/assets/117844309/c18859dc-294e-49ea-8e5b-a1c4819bd46f)
+ 
