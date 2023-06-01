@@ -204,7 +204,7 @@ position: absolute;
 <form method="post" action="{% url 'app:actualquiz' quiz.id %}">
                 {% csrf_token %}
 
-                <h3>Pytanie 1 - Jaki jest synonim slowa "{{quiz.q1}}"?</h3>
+                <h3>Pytanie 1 - Jaki jest synonim slowa "{{quiz.q1}}"? {{ quiz.games }}</h3>
                 {% for choice in options1 %}
 
                     <input type="radio" name="ques1" value="{{choice}}">
@@ -214,7 +214,7 @@ position: absolute;
 
                 <br />
 
-                <h3>Pytanie 2 - Jaki jest synonim slowa "{{quiz.q2}}"</h3>
+                <h3>Pytanie 2 - Jaki jest synonim slowa "{{quiz.q2}}"?</h3>
                 {% for choice in options2 %}
 
                     <input type="radio" name="ques2" value="{{choice}}">
@@ -224,7 +224,7 @@ position: absolute;
 
                 <br />
 
-                <h3>Pytanie 3 - Jaki jest synonim slowa "{{quiz.q3}}"</h3>
+                <h3>Pytanie 3 - Jaki jest synonim slowa "{{quiz.q3}}"?</h3>
                 {% for choice in options3 %}
 
                     <input type="radio" name="ques3" value="{{choice}}">
@@ -234,7 +234,7 @@ position: absolute;
 
                 <br />
 
-                <h3>Pytanie 4 - Jaki jest synonim slowa "{{quiz.q4}}"</h3>
+                <h3>Pytanie 4 - Jaki jest synonim slowa "{{quiz.q4}}"?</h3>
                 {% for choice in options4 %}
 
                     <input type="radio" name="ques4" value="{{choice}}">

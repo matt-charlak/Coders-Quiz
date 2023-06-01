@@ -1,0 +1,853 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.15 (Ubuntu 12.15-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.15 (Ubuntu 12.15-0ubuntu0.20.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: main; Type: SCHEMA; Schema: -; Owner: mateusz
+--
+
+CREATE SCHEMA main;
+
+
+ALTER SCHEMA main OWNER TO mateusz;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: app_game; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.app_game (
+    id integer,
+    question character varying(200),
+    answer character varying(200),
+    description1 character varying(200)
+);
+
+
+ALTER TABLE main.app_game OWNER TO mateusz;
+
+--
+-- Name: app_quiz; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.app_quiz (
+    id integer,
+    q1_id integer,
+    q2_id integer,
+    q3_id integer,
+    q4_id integer,
+    user_id integer,
+    q1selected character varying(200),
+    q2selected character varying(200),
+    q3selected character varying(200),
+    q4selected character varying(200)
+);
+
+
+ALTER TABLE main.app_quiz OWNER TO mateusz;
+
+--
+-- Name: app_userprofile; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.app_userprofile (
+    id integer,
+    photo character varying(100),
+    "Name" character varying(200),
+    bio character varying(200),
+    gender character varying(6),
+    "mobileNo" character varying(50),
+    user_id integer,
+    "totalAns" integer,
+    "totalQues" integer
+);
+
+
+ALTER TABLE main.app_userprofile OWNER TO mateusz;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.auth_group (
+    id integer,
+    name character varying(150)
+);
+
+
+ALTER TABLE main.auth_group OWNER TO mateusz;
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.auth_group_permissions (
+    id integer,
+    group_id integer,
+    permission_id integer
+);
+
+
+ALTER TABLE main.auth_group_permissions OWNER TO mateusz;
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.auth_permission (
+    id integer,
+    content_type_id integer,
+    codename character varying(100),
+    name character varying(255)
+);
+
+
+ALTER TABLE main.auth_permission OWNER TO mateusz;
+
+--
+-- Name: auth_user; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.auth_user (
+    id integer,
+    password character varying(128),
+    last_login timestamp without time zone,
+    is_superuser text,
+    username character varying(150),
+    first_name character varying(30),
+    email character varying(254),
+    is_staff text,
+    is_active text,
+    date_joined timestamp without time zone,
+    last_name character varying(150)
+);
+
+
+ALTER TABLE main.auth_user OWNER TO mateusz;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.auth_user_groups (
+    id integer,
+    user_id integer,
+    group_id integer
+);
+
+
+ALTER TABLE main.auth_user_groups OWNER TO mateusz;
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.auth_user_user_permissions (
+    id integer,
+    user_id integer,
+    permission_id integer
+);
+
+
+ALTER TABLE main.auth_user_user_permissions OWNER TO mateusz;
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.django_admin_log (
+    id integer,
+    action_time timestamp without time zone,
+    object_id text,
+    object_repr character varying(200),
+    change_message text,
+    content_type_id integer,
+    user_id integer,
+    action_flag text
+);
+
+
+ALTER TABLE main.django_admin_log OWNER TO mateusz;
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.django_content_type (
+    id integer,
+    app_label character varying(100),
+    model character varying(100)
+);
+
+
+ALTER TABLE main.django_content_type OWNER TO mateusz;
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.django_migrations (
+    id integer,
+    app character varying(255),
+    name character varying(255),
+    applied timestamp without time zone
+);
+
+
+ALTER TABLE main.django_migrations OWNER TO mateusz;
+
+--
+-- Name: django_session; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.django_session (
+    session_key character varying(40),
+    session_data text,
+    expire_date timestamp without time zone
+);
+
+
+ALTER TABLE main.django_session OWNER TO mateusz;
+
+--
+-- Name: sqlite_master; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.sqlite_master (
+    type text,
+    name text,
+    tbl_name text,
+    rootpage integer,
+    sql text
+);
+
+
+ALTER TABLE main.sqlite_master OWNER TO mateusz;
+
+--
+-- Name: sqlite_sequence; Type: TABLE; Schema: main; Owner: mateusz
+--
+
+CREATE TABLE main.sqlite_sequence (
+    name text,
+    seq text
+);
+
+
+ALTER TABLE main.sqlite_sequence OWNER TO mateusz;
+
+--
+-- Name: _app_game; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._app_game (
+    id smallint,
+    question character varying(13) DEFAULT NULL::character varying,
+    answer character varying(27) DEFAULT NULL::character varying,
+    description1 character varying(76) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public._app_game OWNER TO mateusz;
+
+--
+-- Name: _app_quiz; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._app_quiz (
+    id smallint,
+    q1_id smallint,
+    q2_id smallint,
+    q3_id smallint,
+    q4_id smallint,
+    user_id smallint,
+    q1selected character varying(27) DEFAULT NULL::character varying,
+    q2selected character varying(27) DEFAULT NULL::character varying,
+    q3selected character varying(15) DEFAULT NULL::character varying,
+    q4selected character varying(27) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public._app_quiz OWNER TO mateusz;
+
+--
+-- Name: _app_userprofile; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._app_userprofile (
+    id smallint,
+    photo character varying(1) DEFAULT NULL::character varying,
+    name character varying(15) DEFAULT NULL::character varying,
+    bio character varying(8) DEFAULT NULL::character varying,
+    gender character varying(9) DEFAULT NULL::character varying,
+    mobileno character varying(12) DEFAULT NULL::character varying,
+    user_id smallint,
+    totalans smallint,
+    totalques smallint
+);
+
+
+ALTER TABLE public._app_userprofile OWNER TO mateusz;
+
+--
+-- Name: _auth_group; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._auth_group (
+    id character varying(1) DEFAULT NULL::character varying,
+    name character varying(1) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public._auth_group OWNER TO mateusz;
+
+--
+-- Name: _auth_group_permissions; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._auth_group_permissions (
+    id character varying(1) DEFAULT NULL::character varying,
+    group_id character varying(1) DEFAULT NULL::character varying,
+    permission_id character varying(1) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public._auth_group_permissions OWNER TO mateusz;
+
+--
+-- Name: _auth_permission; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._auth_permission (
+    id smallint,
+    content_type_id smallint,
+    codename character varying(18) DEFAULT NULL::character varying,
+    name character varying(23) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public._auth_permission OWNER TO mateusz;
+
+--
+-- Name: _auth_user; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._auth_user (
+    id smallint,
+    password character varying(78) DEFAULT NULL::character varying,
+    last_login character varying(10) DEFAULT NULL::character varying,
+    is_superuser smallint,
+    username character varying(15) DEFAULT NULL::character varying,
+    first_name character varying(7) DEFAULT NULL::character varying,
+    email character varying(25) DEFAULT NULL::character varying,
+    is_staff smallint,
+    is_active smallint,
+    date_joined character varying(10) DEFAULT NULL::character varying,
+    last_name character varying(7) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public._auth_user OWNER TO mateusz;
+
+--
+-- Name: _auth_user_groups; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._auth_user_groups (
+    id character varying(1) DEFAULT NULL::character varying,
+    user_id character varying(1) DEFAULT NULL::character varying,
+    group_id character varying(1) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public._auth_user_groups OWNER TO mateusz;
+
+--
+-- Name: _auth_user_user_permissions; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._auth_user_user_permissions (
+    id character varying(1) DEFAULT NULL::character varying,
+    user_id character varying(1) DEFAULT NULL::character varying,
+    permission_id character varying(1) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public._auth_user_user_permissions OWNER TO mateusz;
+
+--
+-- Name: _django_admin_log; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._django_admin_log (
+    id smallint,
+    action_time character varying(10) DEFAULT NULL::character varying,
+    object_id smallint,
+    object_repr character varying(11) DEFAULT NULL::character varying,
+    change_message character varying(15) DEFAULT NULL::character varying,
+    content_type_id smallint,
+    user_id smallint,
+    action_flag smallint
+);
+
+
+ALTER TABLE public._django_admin_log OWNER TO mateusz;
+
+--
+-- Name: _django_content_type; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._django_content_type (
+    id smallint,
+    app_label character varying(12) DEFAULT NULL::character varying,
+    model character varying(11) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public._django_content_type OWNER TO mateusz;
+
+--
+-- Name: _django_migrations; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._django_migrations (
+    id smallint,
+    app character varying(12) DEFAULT NULL::character varying,
+    name character varying(40) DEFAULT NULL::character varying,
+    applied character varying(10) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public._django_migrations OWNER TO mateusz;
+
+--
+-- Name: _django_session; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._django_session (
+    session_key character varying(32) DEFAULT NULL::character varying,
+    session_data character varying(252) DEFAULT NULL::character varying,
+    expire_date character varying(10) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public._django_session OWNER TO mateusz;
+
+--
+-- Name: _sqlite_sequence; Type: TABLE; Schema: public; Owner: mateusz
+--
+
+CREATE TABLE public._sqlite_sequence (
+    name character varying(19) DEFAULT NULL::character varying,
+    seq smallint
+);
+
+
+ALTER TABLE public._sqlite_sequence OWNER TO mateusz;
+
+--
+-- Data for Name: app_game; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.app_game (id, question, answer, description1) FROM stdin;
+1	irrefutable	certain	Nie da sie zaprzeczyc ani obalic
+2	constraint	limit	Ograniczenie, przymus oraz wymuszenie
+3	elaborate	detailed	Opracowane, skomplikowane zasady
+4	degrade	humiliate	Traktowac kogos z pogarda
+5	economical	avoiding waste	Dobry stostunek wartosci do kosztow
+6	advocate	support a cause	Pomoc, wspierac, popierac
+7	laborious	demanding	Moze wymagac znacznego czasu i wysilku
+8	anomaly	oddity	Cos co odbiega od tego co jest standardowe
+9	catalyst	cause of a process	Szybko zwieksza reakcje chemiczna, ktora nie ulega zadnej trwalem przemianie
+10	differentiate	identify difference between	Rozpozonac, ustalic zmiany
+11	insane	crazy	szalony
+12	furious	raging	Wsciekly
+\.
+
+
+--
+-- Data for Name: app_quiz; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.app_quiz (id, q1_id, q2_id, q3_id, q4_id, user_id, q1selected, q2selected, q3selected, q4selected) FROM stdin;
+1	1	2	3	4	2	certain	limit	detailed	humiliate
+21	1	6	8	7	4	humiliate	detailed	humiliate	avoiding waste
+22	2	6	8	7	4	\N	\N	\N	\N
+23	8	6	7	2	5	oddity	cause of a process	demanding	cause of a process
+24	2	10	7	9	5	\N	\N	\N	\N
+25	1	4	10	2	5	\N	\N	\N	\N
+26	6	4	3	5	5	\N	\N	\N	\N
+27	10	4	7	8	5	\N	\N	\N	\N
+28	1	10	7	4	5	\N	\N	\N	\N
+29	1	10	2	9	5	\N	\N	\N	\N
+30	8	2	3	5	5	humiliate			
+31	4	1	6	2	5	\N	\N	\N	\N
+32	2	6	1	9	5				
+33	5	9	2	8	5	\N	\N	\N	\N
+34	10	6	4	5	5				
+35	4	5	8	7	5	\N	\N	\N	\N
+36	3	6	8	7	5	detailed	oddity	demanding	demanding
+37	4	9	2	3	5	\N	\N	\N	\N
+38	10	3	1	6	5	support a cause	support a cause	support a cause	support a cause
+39	5	3	7	4	5	\N	\N	\N	\N
+40	7	1	2	5	5	\N	\N	\N	\N
+41	5	2	9	1	5	\N	\N	\N	\N
+42	7	3	5	4	5	oddity	identify difference between	limit	oddity
+43	9	11	5	12	5	\N	\N	\N	\N
+44	9	5	12	11	7	avoiding waste	detailed	demanding	crazy
+45	5	8	3	9	7	identify difference between	demanding	demanding	cause of a process
+46	7	6	12	10	7	demanding	identify difference between	demanding	identify difference between
+\.
+
+
+--
+-- Data for Name: app_userprofile; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.app_userprofile (id, photo, "Name", bio, gender, "mobileNo", user_id, "totalAns", "totalQues") FROM stdin;
+3		asd asd	asc	Male	qwdqas	4	0	0
+5		typer typer	4dsfsd	Male	32456	6	5	32
+6		Mateusz Misztal	Young G'	Male	6667778881	7	0	0
+7		Mateusz Misztal	Young G'	Mężczy	444455555666	8	4	12
+\.
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.auth_permission (id, content_type_id, codename, name) FROM stdin;
+1	1	add_logentry	Can add log entry
+2	1	change_logentry	Can change log entry
+3	1	delete_logentry	Can delete log entry
+4	2	add_user	Can add user
+5	2	change_user	Can change user
+6	2	delete_user	Can delete user
+7	3	add_permission	Can add permission
+8	3	change_permission	Can change permission
+9	3	delete_permission	Can delete permission
+10	4	add_group	Can add group
+11	4	change_group	Can change group
+12	4	delete_group	Can delete group
+13	5	add_contenttype	Can add content type
+14	5	change_contenttype	Can change content type
+15	5	delete_contenttype	Can delete content type
+16	6	add_session	Can add session
+17	6	change_session	Can change session
+18	6	delete_session	Can delete session
+19	7	add_userprofile	Can add user profile
+20	7	change_userprofile	Can change user profile
+21	7	delete_userprofile	Can delete user profile
+22	8	add_game	Can add game
+23	8	change_game	Can change game
+24	8	delete_game	Can delete game
+25	9	add_quiz	Can add quiz
+26	9	change_quiz	Can change quiz
+27	9	delete_quiz	Can delete quiz
+28	1	view_logentry	Can view log entry
+29	3	view_permission	Can view permission
+30	4	view_group	Can view group
+31	2	view_user	Can view user
+32	5	view_contenttype	Can view content type
+33	6	view_session	Can view session
+34	8	view_game	Can view game
+35	7	view_userprofile	Can view user profile
+36	9	view_quiz	Can view quiz
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.auth_user (id, password, last_login, is_superuser, username, first_name, email, is_staff, is_active, date_joined, last_name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.django_admin_log (id, action_time, object_id, object_repr, change_message, content_type_id, user_id, action_flag) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	user
+3	auth	permission
+4	auth	group
+5	contenttypes	contenttype
+6	sessions	session
+7	app	userprofile
+8	app	game
+9	app	quiz
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2018-03-31 09:57:31.131295
+2	auth	0001_initial	2018-03-31 09:57:31.365631
+3	admin	0001_initial	2018-03-31 09:57:31.578765
+4	admin	0002_logentry_remove_auto_add	2018-03-31 09:57:31.780218
+5	app	0001_initial	2018-03-31 09:57:31.981751
+6	contenttypes	0002_remove_content_type_name	2018-03-31 09:57:32.228033
+7	auth	0002_alter_permission_name_max_length	2018-03-31 09:57:32.390589
+8	auth	0003_alter_user_email_max_length	2018-03-31 09:57:32.58964
+9	auth	0004_alter_user_username_opts	2018-03-31 09:57:32.779041
+10	auth	0005_alter_user_last_login_null	2018-03-31 09:57:32.963654
+11	auth	0006_require_contenttypes_0002	2018-03-31 09:57:33.057651
+12	auth	0007_alter_validators_add_error_messages	2018-03-31 09:57:33.256874
+13	auth	0008_alter_user_username_max_length	2018-03-31 09:57:33.452652
+14	sessions	0001_initial	2018-03-31 09:57:33.612727
+15	app	0002_auto_20180331_1839	2018-03-31 13:09:59.162839
+16	app	0003_quiz	2018-03-31 15:27:09.558095
+17	app	0004_auto_20180331_2338	2018-03-31 18:08:46.51417
+18	admin	0003_logentry_add_action_flag_choices	2023-05-20 10:30:50.101752
+19	auth	0009_alter_user_last_name_max_length	2023-05-20 10:30:50.125318
+20	auth	0010_alter_group_name_max_length	2023-05-20 10:30:50.146261
+21	auth	0011_update_proxy_permissions	2023-05-20 10:30:50.164267
+22	app	0005_game_description	2023-05-20 10:33:59.188536
+23	app	0006_auto_20230520_1603	2023-05-20 10:33:59.215737
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.django_session (session_key, session_data, expire_date) FROM stdin;
+596adt68h8uaitux1y5bbsrdrxk2rfp6	NmQ1N2FlYzMxYWUwZDE4Y2E4ZjlhNjA5YzUxMjgzNjA5OWRiMmQ5Nzp7Il9hdXRoX3VzZXJfaGFzaCI6IjFhZDc3NTM3YjY0ZDc1OTBkZjBhM2JjOGFlMzI4ZDczNzAyYzIwYTEiLCJfYXV0aF91c2VyX2lkIjoiMyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=	2018-04-14 15:38:27.766667
+mk5g3xi1z58ce2nid5mite6uxxz3ror5	YTM0MzAyYzc2MjY3MzZmYmJlOGUwMTBkNmI5MmY2Yjc0YWVjNTM3ZDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiOGFiZmUwZjlmYTQ2ZmI3MzM4Y2RhY2Y1MDBlM2ZlYzcxOTM2YzU2MiIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=	2018-04-30 17:29:53.591563
+6v3ynliaph192486l5bc6yd1zimsho1w	MDJiMzJjYWUxODNlYmQ5YWRkYTI2MzJlMTljMmY4ODQzYTRhMDk0Njp7Il9hdXRoX3VzZXJfaGFzaCI6ImY5M2E3MjJlOGY0NjRmMjVmZDhiYTMyZjgxNDdjNjhhNzI4MTFkYTgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiI1In0=	2018-04-30 19:31:28.357467
+ip2ssus66tasbbdjqxlhc2rqfp6dxg6j	NzBjZDg4ODFhNDExOTRiYjA2N2Y5ZTYyYWI3ZGNjOTc5ZWI5MDg2ODp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkZjU1MGQ5NWIxNzU2M2ViOTQ5MWVmZTdhYmI3OTAyMDYxOTJlYWExIn0=	2023-06-12 17:23:48.788538
+\.
+
+
+--
+-- Data for Name: sqlite_master; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.sqlite_master (type, name, tbl_name, rootpage, sql) FROM stdin;
+table	django_migrations	django_migrations	2	CREATE TABLE "django_migrations" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" datetime NOT NULL)
+table	sqlite_sequence	sqlite_sequence	3	CREATE TABLE sqlite_sequence(name,seq)
+table	auth_group_permissions	auth_group_permissions	11	CREATE TABLE "auth_group_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "group_id" integer NOT NULL REFERENCES "auth_group" ("id"), "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"))
+table	auth_user_groups	auth_user_groups	14	CREATE TABLE "auth_user_groups" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "group_id" integer NOT NULL REFERENCES "auth_group" ("id"))
+table	auth_user_user_permissions	auth_user_user_permissions	16	CREATE TABLE "auth_user_user_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"))
+index	auth_group_permissions_group_id_permission_id_0cd325b0_uniq	auth_group_permissions	19	CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id")
+index	auth_group_permissions_group_id_b120cbf9	auth_group_permissions	21	CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id")
+index	auth_group_permissions_permission_id_84c5c92e	auth_group_permissions	22	CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id")
+index	auth_user_groups_user_id_group_id_94350c0c_uniq	auth_user_groups	23	CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id")
+index	auth_user_groups_user_id_6a12ed8b	auth_user_groups	24	CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id")
+index	auth_user_groups_group_id_97559544	auth_user_groups	25	CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id")
+index	auth_user_user_permissions_user_id_permission_id_14a6b632_uniq	auth_user_user_permissions	27	CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id")
+index	auth_user_user_permissions_user_id_a95ead1b	auth_user_user_permissions	28	CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id")
+index	auth_user_user_permissions_permission_id_1fbb5f2c	auth_user_user_permissions	29	CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id")
+table	django_content_type	django_content_type	5	CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL)
+index	django_content_type_app_label_model_76bd3d3b_uniq	django_content_type	4	CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model")
+table	auth_permission	auth_permission	39	CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"), "codename" varchar(100) NOT NULL, "name" varchar(255) NOT NULL)
+index	auth_permission_content_type_id_codename_01ab375a_uniq	auth_permission	6	CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename")
+index	auth_permission_content_type_id_2f476e4b	auth_permission	17	CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id")
+table	django_session	django_session	12	CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" datetime NOT NULL)
+index	sqlite_autoindex_django_session_1	django_session	13	\N
+index	django_session_expire_date_a5c62663	django_session	20	CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date")
+table	app_userprofile	app_userprofile	35	CREATE TABLE "app_userprofile" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "photo" varchar(100) NULL, "Name" varchar(200) NULL, "bio" varchar(200) NULL, "gender" varchar(6) NULL, "mobileNo" varchar(50) NULL, "user_id" integer NOT NULL UNIQUE REFERENCES "auth_user" ("id"), "totalAns" integer NULL, "totalQues" integer NULL)
+index	sqlite_autoindex_app_userprofile_1	app_userprofile	36	\N
+table	app_quiz	app_quiz	49	CREATE TABLE "app_quiz" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "q1_id" integer NOT NULL REFERENCES "app_game" ("id"), "q2_id" integer NOT NULL REFERENCES "app_game" ("id"), "q3_id" integer NOT NULL REFERENCES "app_game" ("id"), "q4_id" integer NOT NULL REFERENCES "app_game" ("id"), "user_id" integer NOT NULL REFERENCES "app_userprofile" ("id"), "q1selected" varchar(200) NULL, "q2selected" varchar(200) NULL, "q3selected" varchar(200) NULL, "q4selected" varchar(200) NULL)
+index	app_quiz_q1_id_b5dadccb	app_quiz	42	CREATE INDEX "app_quiz_q1_id_b5dadccb" ON "app_quiz" ("q1_id")
+index	app_quiz_q2_id_7590acfd	app_quiz	43	CREATE INDEX "app_quiz_q2_id_7590acfd" ON "app_quiz" ("q2_id")
+index	app_quiz_q3_id_c91c076c	app_quiz	45	CREATE INDEX "app_quiz_q3_id_c91c076c" ON "app_quiz" ("q3_id")
+index	app_quiz_q4_id_57a3f276	app_quiz	47	CREATE INDEX "app_quiz_q4_id_57a3f276" ON "app_quiz" ("q4_id")
+index	app_quiz_user_id_14bd4b80	app_quiz	48	CREATE INDEX "app_quiz_user_id_14bd4b80" ON "app_quiz" ("user_id")
+table	django_admin_log	django_admin_log	33	CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "action_time" datetime NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED, "action_flag" smallint unsigned NOT NULL CHECK ("action_flag" >= 0))
+index	django_admin_log_content_type_id_c4bce8eb	django_admin_log	30	CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id")
+index	django_admin_log_user_id_c564eba6	django_admin_log	32	CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id")
+table	auth_user	auth_user	34	CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "last_name" varchar(150) NOT NULL)
+index	sqlite_autoindex_auth_user_1	auth_user	54	\N
+table	auth_group	auth_group	18	CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(150) NOT NULL UNIQUE)
+index	sqlite_autoindex_auth_group_1	auth_group	56	\N
+table	app_game	app_game	8	CREATE TABLE "app_game" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "question" varchar(200) NULL, "answer" varchar(200) NULL, "description1" varchar(200) NULL)
+\.
+
+
+--
+-- Data for Name: sqlite_sequence; Type: TABLE DATA; Schema: main; Owner: mateusz
+--
+
+COPY main.sqlite_sequence (name, seq) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _app_game; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._app_game (id, question, answer, description1) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _app_quiz; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._app_quiz (id, q1_id, q2_id, q3_id, q4_id, user_id, q1selected, q2selected, q3selected, q4selected) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _app_userprofile; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._app_userprofile (id, photo, name, bio, gender, mobileno, user_id, totalans, totalques) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _auth_group; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _auth_permission; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._auth_permission (id, content_type_id, codename, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _auth_user; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._auth_user (id, password, last_login, is_superuser, username, first_name, email, is_staff, is_active, date_joined, last_name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _auth_user_groups; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _django_admin_log; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._django_admin_log (id, action_time, object_id, object_repr, change_message, content_type_id, user_id, action_flag) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _django_content_type; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._django_content_type (id, app_label, model) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _django_migrations; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._django_migrations (id, app, name, applied) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _django_session; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._django_session (session_key, session_data, expire_date) FROM stdin;
+\.
+
+
+--
+-- Data for Name: _sqlite_sequence; Type: TABLE DATA; Schema: public; Owner: mateusz
+--
+
+COPY public._sqlite_sequence (name, seq) FROM stdin;
+\.
+
+
+--
+-- PostgreSQL database dump complete
+--
+
