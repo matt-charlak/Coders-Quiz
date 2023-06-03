@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from .models import UserProfile, Game, Quiz
+from .views import get_user_profiles
 
 class ModelTests(TestCase):
     def setUp(self):
@@ -50,3 +51,24 @@ class ModelTests(TestCase):
         self.assertEqual(updated_quiz.q1.question, 'Updated Question')
         self.assertEqual(updated_quiz.q1.answer, 'Updated Answer')
 
+class GetUserProfilesTestCase(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        # Dodaj testowe dane użytkowników do bazy danych
+        UserProfile.objects.create(totalAns=10, name='John')
+        UserProfile.objects.create(totalAns=5, name='Jane')
+        UserProfile.objects.create(totalAns=8, name='Bob')
+
+    def test_get_user_profiles(self):
+        request = self.factory.get('/get_user_profiles/')
+        response = get_user_profiles(request)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'user_profiles.html')
+
+        # Sprawdź czy dane są poprawnie posortowane i wyświetlone na stronie
+        self.assertContains(response, '10')
+        self.assertContains(response, 'John')
+        self.assertContains(response, '8')
+        self.assertContains(response, 'Bob')
+        self.assertContains(response, '5')
+        self.assertContains(response, 'Jane')
