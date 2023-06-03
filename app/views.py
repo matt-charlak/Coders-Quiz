@@ -13,6 +13,7 @@ from .forms import GameForm
 
 
 
+# strona rejestracyjna
 def register(request):
     print("HI")
     if request.user.is_authenticated:
@@ -50,6 +51,7 @@ def register(request):
             return render(request, 'app/registration.html', {})
 
 
+#strona logujaca
 def login(request):
     print("HI")
     if request.user.is_authenticated:
@@ -82,11 +84,13 @@ def login(request):
             return render(request, 'app/login.html', {})
 
 
+#strona wylogowujaca
 def logout(request):
     auth_logout(request)
     return redirect(reverse('app:login'))
 
 
+#strona profilu uzytkowniku (po zalogowaniu)
 @login_required(login_url='app:login')
 def user_profile(request, id):
     client = get_object_or_404(UserProfile, id=id)
@@ -94,7 +98,7 @@ def user_profile(request, id):
     quiz = Quiz.objects.filter(user=user)
     return render(request, 'app/user_profile.html', {'client': client, 'req': request.user, 'quiz': quiz})
 
-
+#strona wyszukwiarki (wymagane zalogowanie)
 @login_required(login_url='app:login')
 def search(request):
     user = request.user
@@ -109,7 +113,7 @@ def search(request):
         return render(request, 'app/search.html', {'questions': questions, 'prof': prof})
     return render(request, 'app/search.html', {'questions': questions, 'prof': prof})
 
-
+#strona quizu (wymagane zalogowanie)
 @login_required(login_url='app:login')
 def quiz(request):
     game = Game.objects.all()
@@ -129,7 +133,7 @@ def quiz(request):
     quiz_url = '/actualquiz/' + str(qu.id)
     return HttpResponseRedirect(quiz_url)
 
-
+#strona odpowiedzi do quizu (wymagane zalogowanie)
 @login_required(login_url='app:login')
 def actualquiz(request, id):
     if request.method == 'POST':
@@ -202,6 +206,7 @@ def actualquiz(request, id):
             quiz = Quiz.objects.get(id=id)
             return render(request, 'app/quiz.html', {'quiz': quiz, 'f': 1})
 
+#strona dodawnia gier
 def add_game(request):
     if request.method == 'POST':
         form = GameForm(request.POST)
@@ -212,3 +217,10 @@ def add_game(request):
     else:
         form = GameForm()
     return render(request, 'app/add_game.html', {'form': form})
+
+
+#ranking graczy
+def get_user_profiles(request):
+    user_profiles = UserProfile.objects.order_by('-totalAns').values('totalAns', 'Name')
+
+    return render(request, 'app/user_profiles.html', {'user_profiles': user_profiles})

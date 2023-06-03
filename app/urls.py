@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^actualquiz/(\d+)$', views.actualquiz, name='actualquiz'),
     url(r'^user_profile/(\d+)$',
         views.user_profile, name='user_profile'),
-    url(r'^add_game/$', views.add_game, name='add_game')
+    url(r'^add_game/$', views.add_game, name='add_game'),
+    url(r'^user_profiles/$', views.get_user_profiles, name='user_profiles')
 ]

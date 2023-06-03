@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+body {
+    height:100%;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    background-image: linear-gradient(135deg, rgba(35, 28, 24, 0.8) 0%,rgba(153, 135, 123, 0.8) 100%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align:center;
+  font-size:24px;
+  font-weight:300;
+  color:#ffffff;
+  text-shadow: 1px 1px 2px #444444;
+  margin: 0;
+}
+
+.container {
+	left: 50%;
+	margin:6em 0 0 -108px;
+	position: absolute;
+}
+
+.social {
+	position: relative;
+	height: 3em;
+	width: 13.5em;
+}
+
+.social li {
+  border-radius:10px;
+	display: block;
+	height: 4em;
+	line-height: 4em;
+	margin: -2.2em;
+	position: absolute;
+	transition: all 0.5s ease-in-out;
+	transform: rotate(45deg);
+	text-align: center;
+	width: 4em;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.4);
+}
+
+.social a {
+	color: #ffffff;
+  text-decoration:none;
+	display: block;
+	height: 4em;
+	line-height: 4em;
+	text-align: center;
+	transform: rotate(-45deg);
+	width: 4em;
+}
+
+@media only screen
+and (max-width : 320px) {
+
+.container {
+left: 50%;
+margin: 5em 0 0 -64px;
+position: absolute;
+}
+
+.social {
+	position: relative;
+	height: 3em;
+	width: 10em;
+}
+
+.social li {
+	height: 3em;
+	line-height: 3em;
+	width: 3em;
+}
+
+.social a {
+	height: 3em;
+	line-height: 3em;
+	width: 3em;
+}
+
+}
+
+.sociali {
+  background:rgba(255,255,255,0.1);
+	left: 50%;
+	top: 0;
+}
+
+.sociali:hover{
+  background:#f34141;
+  box-shadow: 0 0 0 2px #f34141;
+}
+
+table{
+    display: flex;
+    justify-content: center;
+}
+
+th, td{
+    padding: 6px;
+}
+
+th{
+    font-weight: bold;
+}
+
+</style>
+
+
+</head>
+<body>
+    <h1>Ranking</h1>
+    <br>
+    <table style="text-align: center">
+        <tr>
+            <th>Wszystkie odpowiedzi</th>
+            <th>Nazwa Odpowiadajacego</th>
+        </tr>
+        {%  for profile in user_profiles %}
+        <tr>
+            <td>{{ profile.totalAns }}</td>
+            <td>{{ profile.Name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+ <div class="container">
+
+
+
+    <ul class="social">
+
+      <li class="sociali"><a href="{% url 'app:quiz' %}">Quiz</a></li>
+
+    </ul>
+
+  </div>
+</body>
+</html>

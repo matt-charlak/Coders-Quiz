@@ -77,7 +77,12 @@ class Quiz(models.Model):
     q4selected = models.CharField(max_length=200, blank=True, null=True)
 
 
+class UserProfileRanking(models.Model):
 
+    #model ktory wyciaga z bazy caly ranking graczy ktorzy oddali odpowiedz w grze
+    #ustawia ich w kolejnosc ilosci najwiecej odpowiedzi do najmniej
 
+    totalAns = models.IntegerField()
+    name = models.CharField(max_length=255)
 
-
+    db_table = 'app_userprofile'
