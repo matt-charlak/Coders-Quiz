@@ -13,9 +13,20 @@ from .forms import GameForm
 
 
 
-# strona rejestracyjna
 def register(request):
     print("HI")
+    """
+    Widok zbierajacy informacje na temat profilu uzytkownika w momencie rejestracji oraz tworzacy odpowiedni rekord w bazie z danymi
+    
+    :username: nazwa uzytkownika
+    :password: haslo uzytkownika
+    :email: email uzytkownika
+    :first_name: imie uzytkownika
+    :last_name: nazwisko uzytkownika
+    :bio: opis uzytkownika
+    :mobileNo: numer kontaktowy uzytkownika
+    :gender: plec uzytkownika
+    """
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
         user_profile_url = '/user_profile/' + str(user_profile.id)
@@ -32,7 +43,10 @@ def register(request):
             gender = request.POST.get('gender', '')
 
             if User.objects.filter(username=username).exists():
-                error = 'The Sap_id is already in use by another account.'
+                """
+                Sprawdza czy nazwa uzytkownika juz nie wystepuje w pazie danych
+                """
+                error = 'Ta nazwa uzytkownika jest juz uzywana przez innego uzytkownika'
                 return render(request, 'app/registration.html', {'error': error})
 
             else:
@@ -51,9 +65,16 @@ def register(request):
             return render(request, 'app/registration.html', {})
 
 
-#strona logujaca
 def login(request):
     print("HI")
+    """
+    Widok pytajacy uzytkownika o dany do zalogowania sie do serwisu
+    
+    
+    :param request:
+    :username: nazwa uzytkownika podana podczas rejestracji
+    :password: haslo uzytkownika podane podczas rejestracji
+    """
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
         student_profile_url = '/user_profile/' + str(user_profile.id)
@@ -74,33 +95,52 @@ def login(request):
                     student_profile_url = '/user_profile/' + str(student_profile.id)
                     return HttpResponseRedirect(student_profile_url)
                 else:
-                    error = 'Your account is disabled.'
+                    error = 'Twoje konto jest wylaczone'
                     return render(request, 'app/login.html', {'error': error})
             else:
                 print('error')
-                error = 'Incorrect Username or Password'
+                error = 'Niepoprawny login albo haslo'
                 return render(request, 'app/login.html', {'error': error})
         else:
             return render(request, 'app/login.html', {})
 
 
-#strona wylogowujaca
 def logout(request):
+    """
+    Widok ktory przekierowuje do strony logowania po wylogowaniu z konta
+
+    :param request:
+    :return: przekierowanie do strony logowania
+    """
     auth_logout(request)
     return redirect(reverse('app:login'))
 
 
-#strona profilu uzytkowniku (po zalogowaniu)
 @login_required(login_url='app:login')
 def user_profile(request, id):
+    """
+    Widok wyswietlajacy profil uzytkownika
+    !wymaga zalogowania!
+
+    :param request:
+    :param id: id profilu uzytkownika
+    :return: widok profilu uzytkownika ze wszystkimi danymi wyszczegolnionymi w momencie zakladania profilu
+    """
     client = get_object_or_404(UserProfile, id=id)
     user = UserProfile.objects.get(user=request.user)
     quiz = Quiz.objects.filter(user=user)
     return render(request, 'app/user_profile.html', {'client': client, 'req': request.user, 'quiz': quiz})
 
-#strona wyszukwiarki (wymagane zalogowanie)
+
 @login_required(login_url='app:login')
 def search(request):
+    """
+    Widok strony slowek ktore znajduja sie w bazie (ewentualnie wyfiltrowane slowko ktorego szukamy)
+    !wymaga byia zlogowanym!
+
+    :param request:
+    :return: widok zwraca wszystkie (badz szukane) slownko w bazie
+    """
     user = request.user
     prof = UserProfile.objects.get(user=user)
     print(prof.id)
@@ -109,13 +149,21 @@ def search(request):
         param = request.GET.get('search')
         questions = Game.objects.filter(question__icontains=param)
         if not questions.exists():
-            return render(request, 'app/search.html', {'error': 'NO MATCHING QUESTIONS FOUND', 'prof': prof})
+            return render(request, 'app/search.html', {'error': 'Brak takie slowa w bazie', 'prof': prof})
         return render(request, 'app/search.html', {'questions': questions, 'prof': prof})
     return render(request, 'app/search.html', {'questions': questions, 'prof': prof})
 
 #strona quizu (wymagane zalogowanie)
 @login_required(login_url='app:login')
 def quiz(request):
+    """
+    Widok strony z pytaniami znajdujacymi sie bazie danych (moze sie zwiekszac podczas gdy uzytkownika cos doda)
+    !wymaga byc zalogowanym!
+
+
+    :param request:
+    :return: przedstawia quiz z randomowo wybranmi slowkami z bazy danych w postaci pytan
+    """
     game = Game.objects.all()
     print(game)
     a = len(game)
@@ -136,6 +184,14 @@ def quiz(request):
 #strona odpowiedzi do quizu (wymagane zalogowanie)
 @login_required(login_url='app:login')
 def actualquiz(request, id):
+    """
+    Widok z quizem na ktore uzytkownika aplikacji juz odpowiedzial. Jezeli odpowiedzial poprawnie do dodatkowy punkt trafia na jego konto.
+    !wymaga byc zalogowanym!
+
+    :param request:
+    :param id: id profilu uzytkownika
+    :return: zwraca widok quizu z informacja czy oddana odpoweidz jest poprawna, badz niepoprawna
+    """
     if request.method == 'POST':
         count = 0
         s1 = request.POST.get('ques1', '')
@@ -208,6 +264,12 @@ def actualquiz(request, id):
 
 #strona dodawnia gier
 def add_game(request):
+    """
+    Widok ktory pozwala uzytkownikowi dodawnia nowych slowek do bazy, a pozniej korzystanie ich w momencie quziu
+
+    :param request:
+    :return: pokazanie widok z mozliwoscia dodania slowka do bazy danych
+    """
     if request.method == 'POST':
         form = GameForm(request.POST)
         if form.is_valid():
@@ -221,6 +283,12 @@ def add_game(request):
 
 #ranking graczy
 def get_user_profiles(request):
+    """
+    Widok ktory przedstawia wyniki innych uzytkownikow aplikacji i porzadkuje ich od najlepszych do najgorszych
+
+    :param request:
+    :return: pokazanie widok z rankingiem uzytkownikow oraz punktacja odpowiedzi
+    """
     user_profiles = UserProfile.objects.order_by('-totalAns').values('totalAns', 'Name')
 
     return render(request, 'app/user_profiles.html', {'user_profiles': user_profiles})
