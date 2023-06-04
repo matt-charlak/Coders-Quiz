@@ -153,7 +153,6 @@ def search(request):
         return render(request, 'app/search.html', {'questions': questions, 'prof': prof})
     return render(request, 'app/search.html', {'questions': questions, 'prof': prof})
 
-#strona quizu (wymagane zalogowanie)
 @login_required(login_url='app:login')
 def quiz(request):
     """
@@ -181,7 +180,6 @@ def quiz(request):
     quiz_url = '/actualquiz/' + str(qu.id)
     return HttpResponseRedirect(quiz_url)
 
-#strona odpowiedzi do quizu (wymagane zalogowanie)
 @login_required(login_url='app:login')
 def actualquiz(request, id):
     """
@@ -262,7 +260,6 @@ def actualquiz(request, id):
             quiz = Quiz.objects.get(id=id)
             return render(request, 'app/quiz.html', {'quiz': quiz, 'f': 1})
 
-#strona dodawnia gier
 def add_game(request):
     """
     Widok ktory pozwala uzytkownikowi dodawnia nowych slowek do bazy, a pozniej korzystanie ich w momencie quziu
@@ -281,7 +278,6 @@ def add_game(request):
     return render(request, 'app/add_game.html', {'form': form})
 
 
-#ranking graczy
 def get_user_profiles(request):
     """
     Widok ktory przedstawia wyniki innych uzytkownikow aplikacji i porzadkuje ich od najlepszych do najgorszych
@@ -292,3 +288,4 @@ def get_user_profiles(request):
     user_profiles = UserProfile.objects.order_by('-totalAns').values('totalAns', 'Name')
 
     return render(request, 'app/user_profiles.html', {'user_profiles': user_profiles})
+
